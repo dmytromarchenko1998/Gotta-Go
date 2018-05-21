@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NearbyRestroomsList from './components/NearbyRestroomsList.jsx';
-import AddNew from './components/AddNew.jsx';
+import AddNew from './components/addNew.jsx';
 import axios from 'axios';
 import API_KEYS from '../API_KEYS.js';
 
