@@ -33,7 +33,9 @@ class AddNew extends React.Component {
           OpenMins: document.getElementById("MinsOpen").value,
           ClosedMins: document.getElementById("MinsClosed").value,
           address: document.getElementById("InputAddress").value,
-          code: document.getElementById("InputCode").value
+          code: document.getElementById("InputCode").value,
+          OpenTimeOfDay: document.getElementById("TimeOpen").value,
+          ClosedTimeOfDat: document.getElementById("TimeClosed").value
         }
       })
       .then(this.resetForm)
@@ -46,71 +48,79 @@ class AddNew extends React.Component {
     document.getElementById("InputName").value = "";
     document.getElementById("InputCode").value = "";
     document.getElementById("InputAddress").value = "";
-    // console.log(this);
-    this.props.findRestrooms()
-    // alert(response.data);
+    this.props.findRestrooms();
+    this.props.toggleAddNewModal();
   }
 
   useCurrentLocation() {
     document.getElementById("InputAddress").value = this.props.address;
   }
 
+  toggleHours() {
+    document.getElementsByClassName('Hours')[0].classList.toggle('hide');
+    document.getElementById('toggleHours').classList.toggle('hide');
+  }
+
   render() {
-    if (this.props.curLat && this.props.curLon && this.props.address) {
-      return (
-        <div>
-
-          <form>
-            <input id="InputName" type="text" />
-
-            <input id="InputAddress" type="text" />
-
-            <input id="InputCode" type="text"/>
-          </form>
+    return (
+      <div className="hide modal">
+        <div className="modalContainer">
 
           <div>
-            <button onClick={this.useCurrentLocation} >Use Current Location</button>
+            <div className="inputNameContainer">
+              <p>Name</p>
+              <input id="InputName" type="text" />
+            </div>
+            <div className="InputAddressContainer">
+              <p>Address</p>
+              <input id="InputAddress" type="text" />
+              <button onClick={this.useCurrentLocation} >Use Current Location</button>
+            </div>
+            <div>
+              <button>Add Code</button>
+            </div>
+            <div className="inputCodeContainer">
+              <p>Code</p>
+              <input id="InputCode" type="text"/>
+            </div>
           </div>
 
           <div>
-
-            <div>
-              <p>Opening Hours</p>
-            </div>
-
-            <div>
-              <HoursDropDown openOrClosed='HoursOpen'/>
-              <MinsDropDown openOrClosed='MinsOpen'/>
-              <TimeOfDayDropDown timeOfDay={this.state.possibleTimeofDay} />
-            </div>
-
+            <button id="toggleHours" onClick={this.toggleHours}>Add Hours</button>
           </div>
-
-          <div>
-
+          <div className="hide Hours">
             <div>
-              <p>Closing Hours</p>
+
+              <div>
+                <p>Opening Hours</p>
+              </div>
+
+              <div>
+                <HoursDropDown openOrClosed='HoursOpen'/>
+                <MinsDropDown openOrClosed='MinsOpen'/>
+                <TimeOfDayDropDown openOrClosed="TimeOpen" timeOfDay={this.state.possibleTimeofDay} />
+              </div>
+
             </div>
 
             <div>
-              <HoursDropDown openOrClosed='HoursClosed'/>
-              <MinsDropDown openOrClosed='MinsClosed'/>
-              <TimeOfDayDropDown timeOfDay={this.state.possibleTimeofDay} />
-            </div>
 
+              <div>
+                <p>Closing Hours</p>
+              </div>
+
+              <div>
+                <HoursDropDown openOrClosed='HoursClosed'/>
+                <MinsDropDown openOrClosed='MinsClosed'/>
+                <TimeOfDayDropDown openOrClosed="TimeClosed" timeOfDay={this.state.possibleTimeofDay} />
+              </div>
+
+            </div>
           </div>
           <button onClick={this.AddLocation.bind(this)}>AddLocation</button>
         </div>
-      )
-    }
-    else {
-      return (
-      <div>
-        <p>loading</p>
-        <p>loading</p>
       </div>
-      )
-    }
+    )
   }
 }
 

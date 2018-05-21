@@ -14,6 +14,7 @@ const MinsDropDown = (props) => {
   return (
     <form> 
       <select id={props.openOrClosed}>
+         <option value="" selected disabled hidden>Mins</option>
         {mins.map(min => { return <option value={min}>{min}</option> })}
       </select>
     </form>

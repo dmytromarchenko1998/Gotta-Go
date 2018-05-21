@@ -1,4 +1,19 @@
-#map {
-  height: 400px;
-  width: 100%;
+.modal {
+  display: flex;
+  background-color: rgba(0,0,0,0.6);
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+
+.hide {
+  display: none;
+}
+
+.modalContainer {
+  margin-top: 10vw;
+  background-color: white; 
+  height: 40vw;
+  width: 60vw;
+  border-radius: 2px;
 }

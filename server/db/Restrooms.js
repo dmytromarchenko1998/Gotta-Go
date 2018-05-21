@@ -11,8 +11,10 @@ const restroomsSchema = new mongoose.Schema({
   },
   OpenHours: String,
   ClosedHours: String,
+  OpenTimeOfDay: String,
   OpenMins: String,
   ClosedMins: String,
+  ClosedTimeOfDay: String,
   address: {type:String, unique:true},
   code: String,
 });

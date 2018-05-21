@@ -8,8 +8,10 @@ const RestroomEntry = (props) => {
       <div className="entryHours">
         <p>{props.restroom.OpenHours}</p>
         <p>{props.restroom.OpenMins}</p>
+        <p>{props.restroom.OpenTimeOfDay}</p>
         <p>{props.restroom.ClosedHours}</p>
         <p>{props.restroom.ClosedMins}</p>
+        <p>{props.restroom.ClosedTimeOfDay}</p>
       </div>
     </div>
   )

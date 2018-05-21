@@ -14,7 +14,7 @@ class App extends React.Component {
     this.geoError = this.geoError.bind(this);
     this.findRestrooms = this.findRestrooms.bind(this);
     this.getAddress = this.getAddress.bind(this);
-    this.getPlaceName = this.getPlaceName.bind(this);
+    this.toggleAddNewModal = this.toggleAddNewModal.bind(this);
   }
 
   componentDidMount() {
@@ -35,17 +35,6 @@ class App extends React.Component {
     })
   }
 
-  getPlaceName() {
-    axios.get(`https://maps.googleapis.com/maps/api/place/json?&key=${API_KEYS.places}`)
-    .then(response => {
-      console.log(response.data)
-      // this.setState({address:response.data.results[0].formatted_address})
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-
   getCurrentLocation() {
     if (navigator.geolocation) {
       console.log('getting location')
@@ -62,17 +51,23 @@ class App extends React.Component {
     this.setState({longitude:longitude, latitude:latitude})
     this.findRestrooms();
     this.getAddress();
-    this.getPlaceName();
   }
 
   geoError() {
     alert("Geocoder failed.");
   } 
 
+  toggleAddNewModal() {
+    document.getElementsByClassName('modal')[0].classList.toggle('hide');
+  }
+
   render() {
     return (
       <div>
-        <AddNew findRestrooms={this.findRestrooms} address={this.state.address} curLon={this.state.longitude} curLat={this.state.latitude}/>
+        <AddNew toggleAddNewModal={this.toggleAddNewModal} findRestrooms={this.findRestrooms} address={this.state.address} curLon={this.state.longitude} curLat={this.state.latitude}/>
+        <div>
+          <button onClick={this.toggleAddNewModal}>Add New Location</button>
+        </div>
         <NearbyRestroomsList restrooms={this.state.nearbyRestrooms} />
       </div>
     );

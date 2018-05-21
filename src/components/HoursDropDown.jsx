@@ -10,7 +10,8 @@ const HoursDropDown = (props) => {
 
   return (
     <form> 
-      <select id={props.openOrClosed}>
+      <select default="test" id={props.openOrClosed}>
+        <option value="" selected disabled hidden>Hours</option>
         {hours.map(hour => { 
           return (
             <option value={hour}>{hour}</option>
