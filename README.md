@@ -32,10 +32,10 @@ npm start
 
 5. if everything worked it should look like this (except it will show "no restrooms found" since you haven't added any locations) when you visit http://localhost:80/
 
-![alt text](https://github.com/Gotta-Go/blob/master/main.png "main")
+![alt text](https://github.com/dmytromarchenko1998/Gotta-Go/blob/master/main.png "main")
 
-![alt text](https://github.com/Gotta-Go/blob/master/modal-main.png "modal-main")
+![alt text](https://github.com/dmytromarchenko1998/Gotta-Go/blob/master/modal-main.png "modal-main")
 
-![alt text](https://github.com/Gotta-Go/blob/master/modal-code.png "modal-code")
+![alt text](https://github.com/dmytromarchenko1998/Gotta-Go/blob/master/modal-code.png "modal-code")
 
-![alt text](https://github.com/Gotta-Go/blob/master/modal-code&hours.png "modal-code&hours")
+![alt text](https://github.com/dmytromarchenko1998/Gotta-Go/blob/master/modal-code&hours.png "modal-code&hours")
