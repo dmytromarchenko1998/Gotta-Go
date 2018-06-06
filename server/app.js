@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const Restroom = require('./db/Restrooms.js');
-const isWithinRadius = require('./withinRadius.js');
 const bodyParser = require('body-parser');
 
 const app = express();

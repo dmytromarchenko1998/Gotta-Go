@@ -1,18 +1,14 @@
 import React from 'react';
+import RestroomEntryHours from './RestroomEntryHours.jsx';
 
 const RestroomEntry = (props) => {
   return (
-    <div>
-      <p>{props.restroom.name}</p>
-      <p>{props.restroom.address}</p>
-      <div className="entryHours">
-        <p>{props.restroom.OpenHours}</p>
-        <p>{props.restroom.OpenMins}</p>
-        <p>{props.restroom.OpenTimeOfDay}</p>
-        <p>{props.restroom.ClosedHours}</p>
-        <p>{props.restroom.ClosedMins}</p>
-        <p>{props.restroom.ClosedTimeOfDay}</p>
-      </div>
+    <div className="RestroomEntryContainer">
+      <div className="RestroomEntry">
+        <p className="RestroomEntryName">{props.restroom.name}</p>
+        <p>{props.restroom.address}</p>
+        <RestroomEntryHours restroom={props.restroom}/>
+        </div>
     </div>
   )
 }

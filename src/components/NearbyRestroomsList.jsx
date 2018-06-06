@@ -6,7 +6,7 @@ const NearbyRestroomsList = (props) => {
     if (props.restrooms.length >= 1) {
       return (
         <div>
-          {props.restrooms.map(restroom => {return <RestroomEntry restroom={restroom} />})}
+          {props.restrooms.map(restroom => {return <RestroomEntry curLat={props.curLat} curLon={props.curLon} restroom={restroom} />})}
         </div>
       )
     } else {

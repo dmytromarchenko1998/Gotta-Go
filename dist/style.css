@@ -1,8 +1,205 @@
+body {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: Helvetica;
+  background-color: #bdbec1;
+}
+
 .modal {
   display: flex;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.3);
   width: 100vw;
   height: 100vh;
+  justify-content: center;
+  z-index: 10;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.RestroomEntryContainer {
+  color: black;
+  margin: 1vw;
+  border-radius: 3px;
+}
+
+.RestroomEntry {
+  background-color: white;
+  padding: 1vw;
+  border-radius: 3px;
+}
+
+.RestroomEntryName {
+  font-weight: bold;
+}
+
+.entryHoursContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  max-width: 300px; 
+  min-width: 300px; 
+}
+
+.entryHours {
+  display: inline-flex;
+}
+
+.modalContainer {
+  display: flex;
+  margin-top: 5vh;
+  background-color: #1d242d; 
+  width: 60vw;
+  height: 30vw;
+  flex-flow: column;
+  align-items: left;
+  justify-content: flex-start;
+  box-shadow: 0px 5px 50px 5px black;
+}
+
+.closeModal {  
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  width: 60vw;
+}
+
+.closeModalButton {
+  padding-top: 1px;
+  margin: 0px;
+  line-height: 0px;
+  color: #0e0f11;
+}
+
+.closeModalContainer {
+  margin: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #5bfcef;
+  height: 2vw;
+  width: 3vw;
+  box-shadow: 0px 5px 15px 1px black;
+}
+
+.closeModalContainer:hover {
+  box-shadow: 0px 1px 5px 0px black;
+}
+
+#InputName {
+  width: 30vw;
+  font-size: 1.1vw;
+  height: 2vw;
+}
+
+.inputNameContainer, .InputAddressName {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5vw;
+  height: 3vw;
+}
+
+.inputNameContainer>p, .InputAddressName>p, .UseCurrentLocationButton>p {
+  margin: 0px;
+}
+
+.InputAddressContainer {
+  display: flex;
+  flex-flow: column;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+#InputAddress {
+  width: 30vw;
+  box-shadow: none;
+  height: 2vw;
+  font-size: 1.vw;
+}
+
+.UseCurrentLocationButton {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 1.5vw;
+  width: 15vw;
+  font-size: 1vw;
+  background-color: #5bfcef;
+  font-weight: bold;
+  color: #0e0f11;
+  align-self: center;
+  border-radius: 2px;
+  box-shadow: 0px 5px 25px 1px black;
+}
+
+.mainInputs {
+  margin-left: 7vw;
+  margin-right: 7vw;
+  margin-top: 3vw;
+}
+
+.UseCurrentLocationButton:hover, .Button:hover {
+  box-shadow: 0px 1px 5px 0px black;
+}
+
+.AddLocationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  background-color: #de573a;
+  font-size: 2vw;
+  height: 4vw;
+  width: 18vw;
+  border-radius: 5px;
+  box-shadow: 0px 2px 25px 0px black;
+}
+
+.AddLocationButton:hover {
+  box-shadow: 0px 0px 10px 0px black;
+}
+
+.toggleButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #5bfcef;
+  height: 1.5vw;
+  font-size: 1vw;
+  color: #0e0f11;
+  font-weight: bold;
+  border-radius: 2px;
+  width: 10vw;
+  box-shadow: 0px 5px 25px 1px black;
+}
+
+.toggleable {
+  display: flex;
+  margin-left: 7vw;
+  margin-right: 7vw;
+  height: 12vw;
+}
+
+.Hours {
+  width: 27vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputCodeContainer {
+  width: 19vw;
   justify-content: center;
 }
 
@@ -10,10 +207,40 @@
   display: none;
 }
 
-.modalContainer {
-  margin-top: 10vw;
-  background-color: white; 
-  height: 40vw;
-  width: 60vw;
-  border-radius: 2px;
+.placeHolder {
+  width: 19vw;
 }
+
+#app {
+  display: flex;
+  justify-content: center;
+  background-color: #1d242d;
+  width: 70vw;
+  min-height: 100vh;
+  box-shadow: 0px 2px 25px 2px black;
+}
+
+.Main {
+  width: 12vw;
+  height: 3vw;
+  font-size: 1vw;
+}
+
+.NearestBathroomsTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 3vw;
+}
+
+.NearestBathroomsTitle>p {
+  margin-bottom: 1vw;
+}
+
+.content {
+  width: 60vw;
+  display: flex;
+  align-content: center;
+  flex-flow: column;
+}
+
+
