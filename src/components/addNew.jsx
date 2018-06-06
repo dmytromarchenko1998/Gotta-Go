@@ -8,16 +8,15 @@ import CloseModal from './closeModal.jsx';
 import FormButton from './FormButton.jsx';
 
 class AddNew extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       name: undefined,
-      hours: "Add Hours",
-      code: "Add Code",
+      hours: 'Add Hours',
+      code: 'Add Code',
       lon: undefined,
-      lat: undefined
-    }
+      lat: undefined,
+    };
     this.resetForm = this.resetForm.bind(this);
     this.useCurrentLocation = this.useCurrentLocation.bind(this);
     this.toggleHours = this.toggleHours.bind(this);
@@ -32,13 +31,13 @@ class AddNew extends React.Component {
   }
 
   getCoordinates() {
-    let address = document.getElementById("InputAddress").value.split(' ');
+    let address = document.getElementById('InputAddress').value.split(' ');
     address = address.join('+');
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address},&key=${API_KEYS.maps}`)
-    .then(response => {
-      let location = response.data.results[0].geometry.location;
-      this.setState({lat:location.lat, lon:location.lng, address:response.data.results[0].formatted_address}, this.addToDB)
-    })
+      .then((response) => {
+        const { location } = response.data.results[0].geometry;
+        this.setState({ lat: location.lat, lon: location.lng, address: response.data.results[0].formatted_address }, this.addToDB);
+      });
   }
 
   addToDB() {
@@ -48,53 +47,53 @@ class AddNew extends React.Component {
         method: 'post',
         data: {
           location: {
-           type: 'Point',
-           coordinates: [this.state.lon, this.state.lat]
+            type: 'Point',
+            coordinates: [this.state.lon, this.state.lat],
           },
-          name:document.getElementById('InputName').value,
-          OpenHours: document.getElementById("HoursOpen").value,
-          ClosedHours: document.getElementById("HoursClosed").value,
-          OpenMins: document.getElementById("MinsOpen").value,
-          ClosedMins: document.getElementById("MinsClosed").value,
+          name: document.getElementById('InputName').value,
+          OpenHours: document.getElementById('HoursOpen').value,
+          ClosedHours: document.getElementById('HoursClosed').value,
+          OpenMins: document.getElementById('MinsOpen').value,
+          ClosedMins: document.getElementById('MinsClosed').value,
           address: this.state.address,
-          code: document.getElementById("InputCode").value,
-          OpenTimeOfDay: document.getElementById("TimeOpen").value,
-          ClosedTimeOfDay: document.getElementById("TimeClosed").value
-        }
+          code: document.getElementById('InputCode').value,
+          OpenTimeOfDay: document.getElementById('TimeOpen').value,
+          ClosedTimeOfDay: document.getElementById('TimeClosed').value,
+        },
       })
-      .then(this.resetForm)
+        .then(this.resetForm);
     } else {
       console.log(this.state.lon);
     }
   }
 
   resetForm(response) {
-    document.getElementById("InputName").value = "";
-    document.getElementById("InputCode").value = "";
-    document.getElementById("InputAddress").value = "";
+    document.getElementById('InputName').value = '';
+    document.getElementById('InputCode').value = '';
+    document.getElementById('InputAddress').value = '';
     this.props.findRestrooms();
     this.toggleAddNewModal();
   }
 
   useCurrentLocation() {
-    document.getElementById("InputAddress").value = this.props.address;
+    document.getElementById('InputAddress').value = this.props.address;
   }
 
   toggleHours() {
     document.getElementsByClassName('Hours')[0].classList.toggle('hide');
     if (this.state.hours === 'Hide Hours') {
-      this.setState({hours:"Add Hours"})
+      this.setState({ hours: 'Add Hours' });
     } else {
-      this.setState({hours:"Hide Hours"});
+      this.setState({ hours: 'Hide Hours' });
     }
   }
 
   toggleCode() {
     document.getElementsByClassName('inputCodeContainer')[0].classList.toggle('hide');
     if (this.state.code === 'Hide Code') {
-      this.setState({code:"Add Code"})
+      this.setState({ code: 'Add Code' });
     } else {
-      this.setState({code:"Hide Code"});
+      this.setState({ code: 'Hide Code' });
     }
   }
 
@@ -102,15 +101,15 @@ class AddNew extends React.Component {
     return (
       <div className="hide modal">
         <div className="modalContainer">
-          <CloseModal resetForm={this.resetForm}/>
+          <CloseModal resetForm={this.resetForm} />
           <div className="mainInputs">
             <div>
-              <Inputs type="Name"/>
-              <Inputs type="Address"/>
+              <Inputs type="Name" />
+              <Inputs type="Address" />
               <div className="toggleButtons">
-                <FormButton type="UseCurrentLocation" clickFunc={this.useCurrentLocation} buttonText="Use Current Location"/>
-                <FormButton type="toggleCode" clickFunc={this.toggleCode} buttonText={this.state.code}/>
-                <FormButton type="toggleHours" clickFunc={this.toggleHours} buttonText={this.state.hours}/>
+                <FormButton type="UseCurrentLocation" clickFunc={this.useCurrentLocation} buttonText="Use Current Location" />
+                <FormButton type="toggleCode" clickFunc={this.toggleCode} buttonText={this.state.code} />
+                <FormButton type="toggleHours" clickFunc={this.toggleHours} buttonText={this.state.hours} />
               </div>
             </div>
           </div>
@@ -118,13 +117,13 @@ class AddNew extends React.Component {
             <div className="placeHolder">
               <div className="hide inputCodeContainer">
                 <p>Code</p>
-                <input id="InputCode" type="text"/>
+                <input id="InputCode" type="text" />
               </div>
             </div>
 
             <div className="hide Hours">
-              <Hours openOrClosed="Open"/>
-              <Hours openOrClosed="Closed"/>
+              <Hours openOrClosed="Open" />
+              <Hours openOrClosed="Closed" />
             </div>
           </div>
           <div onClick={this.AddLocation.bind(this)} className="AddLocationButton">
@@ -132,7 +131,7 @@ class AddNew extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

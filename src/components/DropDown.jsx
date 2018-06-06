@@ -1,10 +1,10 @@
 import React from 'react';
 
-const DropDown = (props) => { 
+const DropDown = (props) => {
   let values;
   const hours = [];
   for (let i = 1; i <= 12; i += 1) {
-    let hour = JSON.stringify(i);
+    const hour = JSON.stringify(i);
     hours.push(hour);
   }
 
@@ -12,7 +12,7 @@ const DropDown = (props) => {
   for (let i = 0; i <= 60; i += 5) {
     let min = JSON.stringify(i);
     if (min.length === 1) {
-      min = '0' + min;
+      min = `0${min}`;
     }
     mins.push(min);
   }
@@ -21,19 +21,17 @@ const DropDown = (props) => {
 
   if (props.type === 'Mins') {
     values = mins;
-  } else if (props.type === 'Hours'){
+  } else if (props.type === 'Hours') {
     values = hours;
   } else {
     values = timeOfDay;
   }
 
   return (
-    <form> 
+    <form>
       <select id={`${props.type}${props.openOrClosed}`}>
         <option value="" selected disabled hidden>{props.time || props.type}</option>
-        {values.map(value => { 
-          return ( <option value={value}>{value}</option>)
-        })}
+        {values.map(value => (<option value={value}>{value}</option>))}
       </select>
     </form>
   );

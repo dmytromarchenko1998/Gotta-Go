@@ -6,15 +6,13 @@ const NearbyRestroomsList = (props) => {
     if (props.restrooms.length >= 1) {
       return (
         <div>
-          {props.restrooms.map(restroom => {return <RestroomEntry curLat={props.curLat} curLon={props.curLon} restroom={restroom} />})}
+          {props.restrooms.map(restroom => <RestroomEntry curLat={props.curLat} curLon={props.curLon} restroom={restroom} />)}
         </div>
-      )
-    } else {
-      return <div>no restrooms found</div>
+      );
     }
-  } else {
-    return <div>loading</div>
+    return <div>no restrooms found</div>;
   }
-}
+  return <div>loading</div>;
+};
 
 module.exports = NearbyRestroomsList;
