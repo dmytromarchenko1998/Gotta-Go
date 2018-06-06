@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import HoursDropDown from './HoursDropDown.jsx';
-import MinsDropDown from './MinsDropDown.jsx';
-import TimeOfDayDropDown from './TimeOfDayDropDown.jsx';
+import DropDown from './DropDown.jsx';
 import API_KEYS from '../../API_KEYS.js';
+import Hours from './Hours.jsx';
+import Inputs from './Inputs.jsx';
+import CloseModal from './closeModal.jsx';
+import FormButton from './FormButton.jsx';
 
 class AddNew extends React.Component {
 
@@ -11,8 +13,6 @@ class AddNew extends React.Component {
     super(props);
     this.state = {
       name: undefined,
-      possibleTimeofDay:['AM', 'PM'],
-      possibleDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       hours: "Add Hours",
       code: "Add Code",
       lon: undefined,
@@ -102,34 +102,15 @@ class AddNew extends React.Component {
     return (
       <div className="hide modal">
         <div className="modalContainer">
-
-          <span className="closeModal">
-            <div onClick={this.resetForm} className="closeModalContainer">
-              <p className="closeModalButton">&#10005;</p>
-            </div>
-          </span>
+          <CloseModal resetForm={this.resetForm}/>
           <div className="mainInputs">
             <div>
-              <div className="inputNameContainer">
-                <p>Name</p>
-                <input id="InputName" type="text" />
-              </div>
-              <div className="InputAddressContainer">
-                <div className="InputAddressName">
-                  <p>Address</p>
-                  <input id="InputAddress" type="text" />
-                </div>
-              </div>
+              <Inputs type="Name"/>
+              <Inputs type="Address"/>
               <div className="toggleButtons">
-                <div className="UseCurrentLocationButton">
-                  <p onClick={this.useCurrentLocation} >Use Current Location</p>
-                </div>
-                <div className="toggleCode Button" onClick={this.toggleCode}>
-                  <p >{this.state.code}</p>
-                </div>
-                <div className="toggleHours Button" onClick={this.toggleHours}>
-                  <p id="toggleHours" >{this.state.hours}</p>
-                </div>
+                <FormButton type="UseCurrentLocation" clickFunc={this.useCurrentLocation} buttonText="Use Current Location"/>
+                <FormButton type="toggleCode" clickFunc={this.toggleCode} buttonText={this.state.code}/>
+                <FormButton type="toggleHours" clickFunc={this.toggleHours} buttonText={this.state.hours}/>
               </div>
             </div>
           </div>
@@ -142,34 +123,8 @@ class AddNew extends React.Component {
             </div>
 
             <div className="hide Hours">
-
-              <div>
-
-                <div>
-                  <p>Opening Hours</p>
-                </div>
-
-                <div>
-                  <HoursDropDown openOrClosed='HoursOpen'/>
-                  <MinsDropDown openOrClosed='MinsOpen'/>
-                  <TimeOfDayDropDown openOrClosed="TimeOpen" timeOfDay={this.state.possibleTimeofDay} />
-                </div>
-
-              </div>
-
-              <div>
-
-                <div>
-                  <p>Closing Hours</p>
-                </div>
-
-                <div>
-                  <HoursDropDown openOrClosed='HoursClosed'/>
-                  <MinsDropDown openOrClosed='MinsClosed'/>
-                  <TimeOfDayDropDown openOrClosed="TimeClosed" timeOfDay={this.state.possibleTimeofDay} />
-                </div>
-
-              </div>
+              <Hours openOrClosed="Open"/>
+              <Hours openOrClosed="Closed"/>
             </div>
           </div>
           <div onClick={this.AddLocation.bind(this)} className="AddLocationButton">
